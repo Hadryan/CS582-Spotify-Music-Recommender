@@ -1,1 +1,1 @@
-# Spoitfy-Music-Recommender
+# Spoitfy Music Recommender
