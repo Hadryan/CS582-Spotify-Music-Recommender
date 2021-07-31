@@ -1,23 +1,26 @@
+
+# imports
 import time
 
 import redis
-from flask import Flask
+from flask import Flask, render_template, url_for, json
+from flask import request, redirect, flash, jsonify, make_response
+from model import *
+import os, sys
+import random
+import string
+import datetime
+import httplib2
+import requests
+
 
 app = Flask(__name__)
 cache = redis.Redis(host='redis', port=6379)
 
-def get_hit_count():
-    retries = 5
-    while True:
-        try:
-            return cache.incr('hits')
-        except redis.exceptions.ConnectionError as exc:
-            if retries == 0:
-                raise exc
-            retries -= 1
-            time.sleep(0.5)
-
-@app.route('/')
-def hello():
-    count = get_hit_count()
-    return 'Hello World! I have been seen {} times.\n'.format(count)
+# Home page, show the demographic music
+@app.route('/', methods=['GET'])
+@app.route('/home/', methods=['GET'])
+def showHome():
+     if request.method == 'GET':
+        allTracks = 
+        return render_template("index.html", allTracks = allTracks)
