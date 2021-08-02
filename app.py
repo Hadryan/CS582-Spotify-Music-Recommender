@@ -2,7 +2,7 @@
 # imports
 
 import time
-#import redis
+import redis
 from flask import Flask, render_template, url_for, json
 from flask import request, redirect, flash, jsonify, make_response, Response
 import os, sys
@@ -15,7 +15,7 @@ import json
 from dotenv import load_dotenv
 
 app = Flask(__name__)
-#cache = redis.Redis(host='redis', port=6379)
+cache = redis.Redis(host='redis', port=6379)
 
 # Home page, show the demographic music
 @app.route('/', methods=['GET'])
