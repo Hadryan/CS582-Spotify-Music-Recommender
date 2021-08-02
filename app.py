@@ -24,9 +24,7 @@ def showHome():
      if request.method == 'GET':
         token = getSpoitfyClientToken()
         allTracks = getSpoitfyTracks(token)
-        #return render_template("index.html", allTracks = allTracks)
-        print( allTracks,file=sys.stderr)
-        return Response("test", status = 200, mimetype = "text/html")
+        return render_template("index.html", allTracks = allTracks)
 
 
 
@@ -59,7 +57,7 @@ def getSpoitfyTracks(token):
    for trackId in tracksIds:
       if(len(trackId) == 23):
          trackId = trackId[:-1]
-         
+
       auth_response = requests.get(BASE_URL + 'tracks/' + trackId, headers=headers)
       auth_response_data = auth_response.json()
 

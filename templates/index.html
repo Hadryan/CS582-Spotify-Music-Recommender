@@ -90,92 +90,26 @@
                     <div class="row display_boxflex">
                         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
                             <div class="row">
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 margi_bott">
+                                {% for name, link in allTracks %}
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 thumb">
                                     <div class="Gallery_img">
                                         <figure>
-                                            <h3 class=text>Music night</h3>
-                                            <img src="../static/images/Gallery1.jpg " alt="# " />
+                                            <h3 class=text>{{name}}</h3>
+                                            <img src="{{link}}" alt="# " />
                                         </figure>
                                     </div>
-
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 margi_bott ">
-                                    <div class="Gallery_img ">
-                                        <figure>
-                                            <h3 class=text>Music night</h3>
-                                            <img src="../static/images/Gallery2.jpg " alt="# " />
-                                        </figure>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 margi_bott ">
-                                    <div class="Gallery_img ">
-                                        <figure>
-                                            <h3 class=text>Music night</h3>
-                                            <img src="../static/images/Gallery3.jpg " alt="# " />
-                                        </figure>
-                                    </div>
+                        
                                 </div>
 
-                            </div>
-                            <div class="row ">
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 margi_bott ">
-                                    <div class="Gallery_img ">
-                                        <figure>
-                                            <h3 class=text>Music night</h3>
-                                            <img src="../static/images/Gallery1.jpg " alt="# " />
-                                        </figure>
-                                    </div>
-
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 margi_bott ">
-                                    <div class="Gallery_img ">
-                                        <figure>
-                                            <h3 class=text>Music night</h3>
-                                            <img src="../static/images/Gallery2.jpg " alt="# " />
-                                        </figure>
-                                    </div>
-
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 margi_bott ">
-                                    <div class="Gallery_img ">
-                                        <figure>
-                                            <h3 class=text>Music night</h3>
-                                            √<img src="../static/images/Gallery3.jpg " alt="# " />
-                                        </figure>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="row ">
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 margi_bott ">
-                                    <div class="Gallery_img ">
-                                        <figure>
-                                            <h3 class=text>Music night</h3>
-                                            <img src="../static/images/Gallery1.jpg " alt="# " />
-                                        </figure>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 margi_bott ">
-                                    <div class="Gallery_img ">
-                                        <figure>
-                                            <h3 class=text>Music night</h3>
-                                            <img src="../static/images/Gallery2.jpg " alt="# " />
-                                        </figure>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 margi_bott ">
-                                    <div class="Gallery_img ">
-                                        <figure>
-                                            <h3 class=text>Music night</h3>
-                                            <img src="../static/images/Gallery3.jpg " alt="# " /></figure>
-                                    </div>
-                                </div>
-
-                            </div>
+                        {% endfor %}
+                    </div>
+           
                         </div>
                     </div>
                 </div>
                 <div>
+
+                    
                     <p style="font-size:35px;color:rgb(0, 0, 0);font-family:fantasy"><b>You may like</b></p>
                 </div>
                 <div class="container">
