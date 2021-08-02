@@ -33,6 +33,7 @@ html {
 
 body {
     color: #666666;
+    background: black;
     font-size: 14px;
     font-family: 'Poppins', sans-serif;
     line-height: 1.80857;
@@ -1175,8 +1176,8 @@ nav.main-menu {
 }
 
 .header-top {
-    background: url(../images/background.jpeg);
-    background-size: 100% 100%;
+    background: black;
+    /*background-size: 100% 100%;*/
     background-repeat: no-repeat;
     padding-bottom: 50px;
     min-height: 980px;

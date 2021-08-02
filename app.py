@@ -19,7 +19,7 @@ cache = redis.Redis(host='redis', port=6379)
 
 # Home page, show the demographic music
 @app.route('/', methods=['GET'])
-@app.route('/home/', methods=['GET'])
+@app.route('//', methods=['GET'])
 def showHome():
      if request.method == 'GET':
         token = getSpoitfyClientToken()
@@ -46,7 +46,7 @@ def getSpoitfyClientToken():
 
 def getSpoitfyTracks(token): 
    # read the tracks ids file
-   text_file = open("datasets/popularity_sorted_tracks_ids.txt", "r")
+   text_file = open("cachedData/popularity_sorted_tracks_ids.txt", "r")
    tracksIds = text_file.readlines()
 
    headers = {'Authorization': 'Bearer ' + token}
@@ -63,9 +63,23 @@ def getSpoitfyTracks(token):
 
       # add track name and image into list of pairs
       print( auth_response_data['album']['name'],file=sys.stderr)
-      data.append(tuple([auth_response_data['album']['name'], auth_response_data['album']['images'][0]['url']]))
+      data.append(tuple([auth_response_data['name'], auth_response_data['album']['images'][0]['url']]))
 
    return data
+
+
+@app.route('/content')
+def my_form():
+    return render_template('content.html')
+
+@app.route('/content', methods=['POST'])
+def my_form_post():
+    input_nopol = request.form['text_box']
+    if request.method == 'POST':
+       with open('nopol.txt', 'w') as f:
+            f.write(str(input_nopol))
+    return render_template('content.html', nopol=input_nopol)
+
 
 
 if __name__ == '__main__':
