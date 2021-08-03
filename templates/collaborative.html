@@ -1,12 +1,38 @@
 <!DOCTYPE html>
    <head>
       <title>Collaborative</title>
+      <link rel="stylesheet" href="../static/css/materialize.min.css">
+      <link rel="stylesheet" href="../static/css/animate.css">
    </head>
 
    <body>
       <form action="" method="POST">
-        <input name="text_box">
-        <input type="submit">
+         <div class="container">
+            <div class="row">
+                <div class="col-md-14">
+                    <!-- DETAILS -->
+                    <div id="about-card" class="card grey darken-4">
+                        <div class="card-content">
+                            <!-- ABOUT PARAGRAPH -->
+                            <div class="grey-text">
+                                <h4> Add User Id </h4>
+                            </div>
+                            <div class="row">
+                              <div class="input-field col s12">
+                                 <input  name="text_box" class="validate grey-text">
+                             </div>
+                            </div>
+                        </div>
+                        <!-- BUTTONS -->
+                        <div class="card-action">
+                            <input type='submit' class="btn cyan darken-4" value="Add">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
       </form>
    </body>
 </html>
+
