@@ -1,4 +1,3 @@
-
 # imports
 
 import time
@@ -17,16 +16,15 @@ from dotenv import load_dotenv
 app = Flask(__name__)
 cache = redis.Redis(host='redis', port=6379)
 
-# Home page, show the demographic music
+# Dempgraphic API
 @app.route('/', methods=['GET'])
-@app.route('//', methods=['GET'])
-def showHome():
+def showDemographic():
      if request.method == 'GET':
         token = getSpoitfyClientToken()
-        allTracks = getSpoitfyTracks(token)
+        allTracks = getSpoitfyTracks(token, 'cachedData/popularity_sorted_tracks_ids.txt')
+        print(allTracks,file=sys.stderr)
+        print(type(allTracks),file=sys.stderr)
         return render_template("index.html", allTracks = allTracks)
-
-
 
 
 def getSpoitfyClientToken(): 
@@ -43,10 +41,10 @@ def getSpoitfyClientToken():
    return access_token
 
 
+def getSpoitfyTracks(token, path): 
 
-def getSpoitfyTracks(token): 
    # read the tracks ids file
-   text_file = open("cachedData/popularity_sorted_tracks_ids.txt", "r")
+   text_file = open(path, "r")
    tracksIds = text_file.readlines()
 
    headers = {'Authorization': 'Bearer ' + token}
@@ -63,22 +61,77 @@ def getSpoitfyTracks(token):
 
       # add track name and image into list of pairs
       print( auth_response_data['album']['name'],file=sys.stderr)
-      data.append(tuple([auth_response_data['name'], auth_response_data['album']['images'][0]['url']]))
+      data.append(trackId)
 
    return data
 
 
+
+# Content based API
 @app.route('/content')
-def my_form():
+def addContent():
     return render_template('content.html')
 
 @app.route('/content', methods=['POST'])
-def my_form_post():
-    input_nopol = request.form['text_box']
+def addContentPost():
+    trackName = request.form['text_box']
     if request.method == 'POST':
-       with open('nopol.txt', 'w') as f:
-            f.write(str(input_nopol))
-    return render_template('content.html', nopol=input_nopol)
+       with open('track.txt', 'w') as f:
+            f.write(str(trackName))
+    allTracks = showContentBased()
+    return render_template("index.html", allTracks = allTracks)
+
+
+def showContentBased():
+  # read from track file which we have submited inside the track we need similiar to
+  with open('track.txt', 'r') as file:
+    track = file.read().replace('\n', '')
+  # read from contnt based cached file to find that track name
+  my_csv = open('cachedData/content_based_names.csv')
+  tracks = []
+  for line in my_csv:
+    str1=line.split(',')
+    if track in str1:
+       tracks =line
+       break
+  list = tracks.split(",") 
+  list.pop(0) 
+  print(list,file=sys.stderr)
+  print(type(list),file=sys.stderr)
+  return list
+
+
+
+# Collaborative API
+@app.route('/collaborative')
+def addCollaborative():
+    return render_template('collaborative.html')
+
+@app.route('/collaborative', methods=['POST'])
+def addollaborativePost():
+    userID = request.form['text_box']
+    if request.method == 'POST':
+       with open('id.txt', 'w') as f:
+            f.write(str(userID))
+    allTracks = showCollaborative()
+    return render_template("index.html", allTracks = allTracks)
+
+
+def showCollaborative():
+  with open('id.txt', 'r') as file:
+    id = file.read().replace('\n', '')
+  my_csv = open('cachedData/SVG_Track_Names.csv')
+  tracks = []
+  for line in my_csv:
+    str1=line.split(',')
+    if id in str1:
+       tracks =line
+       break
+  list = tracks.split(",") 
+  list.pop(0) 
+  print(list,file=sys.stderr)
+  print(type(list),file=sys.stderr)
+  return list
 
 
 
